@@ -5,7 +5,10 @@
  */
 package cis44groupproject;
 
+import static cis44groupproject.SeeStudents2.toArrayCasting;
+import static java.awt.image.ImageObserver.HEIGHT;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,43 +20,94 @@ public class AcceptStudentWindow extends javax.swing.JFrame {
     /**
      * Creates new form AcceptStudentWindow
      */
-    public AcceptStudentWindow() {
+    LinkedBag<Student> studentBag = new LinkedBag<>();
+    Queue<Student> waitingList = new Queue<>();
+   
+    public AcceptStudentWindow(LinkedBag<Student> studentBag, Queue<Student> waitingList ) {
+        this.studentBag = studentBag;
+        this.waitingList = waitingList;
         initComponents();
         AddDataToTable();
     }
 
+    private AcceptStudentWindow() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     void AddDataToTable(){
+//         Student currentStudent;
+//         
+//         if(!waitingList.isEmpty()){
+//         currentStudent = waitingList.dequeue();
+//         studentBag.add(currentStudent);
+//         }
+//         
+//         System.out.println("Size in accepts student " + studentBag.getCurrentSize());
+//         
+        System.out.println("Here in Accepts Students");
+        Student[] studentArray = toArrayCasting(studentBag);
+ 
          DefaultTableModel dt = (DefaultTableModel) jTable1.getModel();
          
         
-         Vector v1 = new Vector();
-         Vector v2 = new Vector();
-         Vector v3 = new Vector();
-         Vector v4 = new Vector();
-         
-         v1.add("e");
-         v1.add("f");
-         v1.add("6.00");
-         
-         v2.add("c");
-         v2.add("d");
-         v2.add("3.00");
-         
-         v3.add("a");
-         v3.add("b");
-         v3.add("4.00");
-    
-         v4.add("g");
-         v4.add("h");
-         v4.add("3.75");
-         
-         dt.addRow(v4);
-         dt.addRow(v1);
-         dt.addRow(v3);
-         dt.addRow(v2);
+//         Vector v1 = new Vector();
+//         Vector v2 = new Vector();
+//         Vector v3 = new Vector();
+
         
+         
+         for(int i=0 ; i<studentArray.length; i++)
+         {
+             Vector v = new Vector();
+             v.add(studentArray[i].getfName());
+             v.add(studentArray[i].getlName());
+             v.add(studentArray[i].getGPA());
+             dt.addRow(v);
+         }
+         
+//         DefaultTableModel dt = (DefaultTableModel) jTable1.getModel();
+//         
+//        
+//         Vector v1 = new Vector();
+//         Vector v2 = new Vector();
+//         Vector v3 = new Vector();
+//         Vector v4 = new Vector();
+//         
+//         v1.add("e");
+//         v1.add("f");
+//         v1.add("6.00");
+//         
+//         v2.add("c");
+//         v2.add("d");
+//         v2.add("3.00");
+//         
+//         v3.add("a");
+//         v3.add("b");
+//         v3.add("4.00");
+//    
+//         v4.add("g");
+//         v4.add("h");
+//         v4.add("3.75");
+//         
+//         dt.addRow(v4);
+//         dt.addRow(v1);
+//         dt.addRow(v3);
+//         dt.addRow(v2);
+//        
   
      }
+    public static <T> Student[] toArrayCasting(LinkedBag<T> inputBag)
+    {
+        Object[] rawStudentData = inputBag.toArray();
+        Student currentStudent;
+        Student[] toArrayStudent = new Student[rawStudentData.length];
+        for (int i = 0; i < rawStudentData.length; i++) {
+            currentStudent = (Student) rawStudentData[i];
+            toArrayStudent[i] = currentStudent;
+        }
+        return toArrayStudent;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -66,9 +120,10 @@ public class AcceptStudentWindow extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("4. Accept student");
+        setTitle("4. Accept students");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -95,16 +150,27 @@ public class AcceptStudentWindow extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Add");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(182, 182, 182)
+                .addComponent(jButton2)
+                .addGap(85, 85, 85)
+                .addComponent(jButton1)
                 .addContainerGap(19, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,7 +178,9 @@ public class AcceptStudentWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addGap(21, 21, 21))
         );
 
@@ -122,6 +190,48 @@ public class AcceptStudentWindow extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 this.hide();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    
+        System.out.println("Size in accepts student " + studentBag.getCurrentSize());
+        System.out.println("Here in AcceptStudents");
+        Student currentStudent;
+        
+    Student[] studentArray = toArrayCasting(studentBag); 
+        System.out.println("ADDED: " + studentArray[0]);
+    DefaultTableModel dt = (DefaultTableModel) jTable1.getModel();
+              dt.setRowCount(0);
+         for(int i=0 ; i<studentArray.length; i++)
+         {
+             Vector v = new Vector();
+             v.add(studentArray[i].getfName());
+             v.add(studentArray[i].getlName());
+             v.add(studentArray[i].getGPA());
+             dt.addRow(v);
+         }
+         if(!waitingList.isEmpty()){
+         JOptionPane.showMessageDialog(this, studentArray[0].getfName() + " " + studentArray[0].getlName() +  " is added\nto the class", "Info Saved", HEIGHT);
+         currentStudent = waitingList.dequeue();
+         studentBag.add(currentStudent);
+         }else{
+             JOptionPane.showMessageDialog(this, "Waiting list is empty", "Alert", HEIGHT);
+         }
+        
+       
+ 
+         
+        
+//         Vector v1 = new Vector();
+//         Vector v2 = new Vector();
+//         Vector v3 = new Vector();
+
+//         if(!waitingList.isEmpty()){
+//         JOptionPane.showMessageDialog(this, studentArray[0].getfName() + " " + studentArray[0].getlName() +  " is added\nto the class", "Info Saved", HEIGHT);
+//         }else{
+//             JOptionPane.showMessageDialog(this, "Waiting list is empty", "Alert", HEIGHT);
+//         }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,6 +270,7 @@ this.hide();        // TODO add your handling code here:
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

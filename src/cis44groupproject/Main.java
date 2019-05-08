@@ -47,7 +47,7 @@ public class Main {
             //program options
             
             System.out.println("1. See students.\n2. Add Students\n3. Ranking\n4. Accept student from waiting list.\n"
-                    + "5. Find the best student\n6. Find the worst student\n10. Exit the program.");
+                    + "5. Find the best student\n6. Find the worst student\n7. Remove Student\n10. Exit the program.");
             System.out.print("Choice: ");
             showMenu = false;
             }
@@ -106,7 +106,10 @@ public class Main {
                     }
                     System.out.println("The best student is: " + studentStack.pop().toString());
                     System.out.println("");
-                    break;                    
+                    break;  
+                case 7:
+                    studentBag.remove();
+                    break;
                 case 10:
                     isContinue = false;
                     break;

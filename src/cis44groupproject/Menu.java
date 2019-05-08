@@ -17,13 +17,20 @@ public class Menu extends javax.swing.JFrame {
      * Creates new form Menu
      */
     LinkedBag<Student> studentBag = new LinkedBag<>();
-  
-    public Menu(LinkedBag<Student> studentBag) {
+    Queue<Student> waitingList = new Queue<>();
+    Stack<Student> studentStack = new Stack<>();
+    public Menu(LinkedBag<Student> studentBag, Queue<Student> waitingList,  Stack<Student> studentStack) {
         
         this.studentBag = studentBag;
+        this.waitingList = waitingList;
+        this.studentStack = studentStack;
         initComponents();
         
         System.out.println("IN the menu constructor " + studentBag.getCurrentSize());
+    }
+
+    private Menu(LinkedBag<Student> studentBag) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
@@ -71,7 +78,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        acceptStudentButton.setText("4. Accept student");
+        acceptStudentButton.setText("4. Accept students");
         acceptStudentButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 acceptStudentButtonActionPerformed(evt);
@@ -92,7 +99,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        RemoveStudentButton.setText("7. Remove student");
+        RemoveStudentButton.setText("7. Remove students");
         RemoveStudentButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RemoveStudentButtonActionPerformed(evt);
@@ -177,7 +184,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_rankingButtonActionPerformed
 
     private void acceptStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptStudentButtonActionPerformed
-AcceptStudentWindow newWindow = new AcceptStudentWindow();
+AcceptStudentWindow newWindow = new AcceptStudentWindow(studentBag, waitingList);
 newWindow.setVisible(true);
 // TODO add your handling code here:
     }//GEN-LAST:event_acceptStudentButtonActionPerformed
@@ -195,7 +202,7 @@ newWindow.setVisible(true);
     }//GEN-LAST:event_WorstStudentButtonActionPerformed
 
     private void RemoveStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveStudentButtonActionPerformed
-RemoveStudent newWindow = new RemoveStudent();
+RemoveStudent newWindow = new RemoveStudent(studentBag, waitingList, studentStack);
 newWindow.setVisible(true);
 // TODO add your handling code here:
     }//GEN-LAST:event_RemoveStudentButtonActionPerformed
@@ -255,7 +262,7 @@ newWindow.setVisible(true);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 System.out.println("Here in the Main" + studentBag.getCurrentSize());
-                new Menu(studentBag).setVisible(true);
+                new Menu(studentBag, waitingList, studentStack).setVisible(true);
             }
         });
     }

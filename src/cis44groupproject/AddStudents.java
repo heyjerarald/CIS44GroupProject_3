@@ -5,6 +5,8 @@
  */
 package cis44groupproject;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author admin
@@ -156,7 +158,7 @@ public class AddStudents extends javax.swing.JFrame {
         firstName.setText("");
         lastName.setText("");
         gpa.setText("");
-
+JOptionPane.showMessageDialog(this, fName + " " + lName + " added\nto gradebook", "Info Saved", HEIGHT);
                 
         
 //        new SeeStudents1(fName, lName, GPA).setVisible(true);
