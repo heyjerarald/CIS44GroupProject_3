@@ -190,13 +190,13 @@ newWindow.setVisible(true);
     }//GEN-LAST:event_acceptStudentButtonActionPerformed
 
     private void bestStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bestStudentButtonActionPerformed
-BestStudentWindow newWindow  = new BestStudentWindow();
+BestStudentWindow newWindow  = new BestStudentWindow(studentBag, waitingList, studentStack);
 newWindow.setVisible(true);
 // TODO add your handling code here:
     }//GEN-LAST:event_bestStudentButtonActionPerformed
 
     private void WorstStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WorstStudentButtonActionPerformed
-WorstStudentWindow newWindow = new WorstStudentWindow();
+WorstStudentWindow newWindow = new WorstStudentWindow(studentBag, waitingList, studentStack);
 newWindow.setVisible(true);
 // TODO add your handling code here:
     }//GEN-LAST:event_WorstStudentButtonActionPerformed

@@ -5,6 +5,12 @@
  */
 package cis44groupproject;
 
+import static cis44groupproject.BestStudentWindow.accendingSort;
+import static cis44groupproject.BestStudentWindow.toArrayCasting;
+import static cis44groupproject.Main.accendingSort;
+import static cis44groupproject.Main.toArrayCasting;
+import static cis44groupproject.RankingWindow.accendingSort;
+import static cis44groupproject.RankingWindow.toArrayCasting;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,36 +19,93 @@ import javax.swing.table.DefaultTableModel;
  * @author admin
  */
 public class WorstStudentWindow extends javax.swing.JFrame {
-
+LinkedBag<Student> studentBag = new LinkedBag<>();
+    Queue<Student> waitingList = new Queue<>();
+    Stack<Student> studentStack = new Stack<>();
     /**
      * Creates new form WorstStudentWindow
      */
-    public WorstStudentWindow() {
+    public WorstStudentWindow(LinkedBag<Student> studentBag, Queue<Student> waitingList,  Stack<Student> studentStack ) {
+        this.studentBag = studentBag;
+        this.waitingList = waitingList;
+        this.studentStack = studentStack;
         initComponents();
         AddDataToTable();
     }
+
+    private WorstStudentWindow() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 void AddDataToTable(){
+    Student[] studentArray = toArrayCasting(studentBag);
+       Student[] sortedArray = accendingSort(studentArray);
          DefaultTableModel dt = (DefaultTableModel) jTable1.getModel();
          
+//      for(Student s : accendingSort(toArrayCasting(studentBag))) {
+//                        studentStack.push(s);
+//                    }
+         //System.out.println("LOWEST: " + studentStack.pop());
+         
         
-         Vector v1 = new Vector();
-         Vector v2 = new Vector();
-         Vector v3 = new Vector();
-
-         
-         v1.add("e");
-         v1.add("f");
-         v1.add("6.00");
-         
-         v2.add("c");
-         v2.add("d");
-         v2.add("3.00");
-         
-         v3.add("a");
-         v3.add("b");
-         v3.add("4.00");
- 
-         dt.addRow(v2);
+            // Vector v = new Vector();
+            // v.add(studentStack.pop());
+           
+            // dt.addRow(v);
+          
+             Vector v = new Vector();
+             v.add(studentArray[0].getfName());
+             v.add(studentArray[0].getlName());
+             v.add(studentArray[0].getGPA());
+             dt.addRow(v);
+//     Student[] studentArray = toArrayCasting(studentBag);
+////        Student[] sortedArray = descendingSort(studentArray);
+//         DefaultTableModel dt = (DefaultTableModel) jTable1.getModel();
+//         
+//      for(Student s : descendingSort(toArrayCasting(studentBag))) {
+//                        studentStack.push(s);
+//                    }
+//         //System.out.println("LOWEST: " + studentStack.pop());
+//         
+//        
+//             Vector v = new Vector();
+//             v.add(studentStack.pop());
+//           
+//             dt.addRow(v);
+//         
+//                 
+//         
+//        
+////         Vector v1 = new Vector();
+////         Vector v2 = new Vector();
+////         Vector v3 = new Vector();
+//
+//         Student currentStudent;
+//         
+//         
+//         
+//
+        
+//         DefaultTableModel dt = (DefaultTableModel) jTable1.getModel();
+//         
+//        
+//         Vector v1 = new Vector();
+//         Vector v2 = new Vector();
+//         Vector v3 = new Vector();
+//
+//         
+//         v1.add("e");
+//         v1.add("f");
+//         v1.add("6.00");
+//         
+//         v2.add("c");
+//         v2.add("d");
+//         v2.add("3.00");
+//         
+//         v3.add("a");
+//         v3.add("b");
+//         v3.add("4.00");
+// 
+//         dt.addRow(v2);
         
   
      }
@@ -109,7 +172,44 @@ void AddDataToTable(){
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+public static <T> Student[] toArrayCasting(LinkedBag<T> inputBag)
+    {
+        Object[] rawStudentData = inputBag.toArray();
+        Student currentStudent;
+        Student[] toArrayStudent = new Student[rawStudentData.length];
+        for (int i = 0; i < rawStudentData.length; i++) {
+            currentStudent = (Student) rawStudentData[i];
+            toArrayStudent[i] = currentStudent;
+        }
+        return toArrayStudent;
+    }
+public static <T extends Comparable<T>> T[] accendingSort(T[] arr) {
+        T[] sortedList = arr;
+        for (T item : sortedList) {
+            for (int i = 0; i < sortedList.length - 1; i++) {
+                if (sortedList[i].compareTo(sortedList[i + 1]) > 0) {
+                    T temp = arr[i];
+                    sortedList[i] = arr[i + 1];
+                    sortedList[i + 1] = temp;
+                }
+            }
+        }
+        return sortedList;
+    }
+  
+      public static <T extends Comparable<T>> T[] descendingSort(T[] arr) {
+        T[] sortedList = arr;
+        for (T item : sortedList) {
+            for (int i = 0; i < sortedList.length - 1; i++) {
+                if (sortedList[i].compareTo(sortedList[i + 1]) < 0) {
+                    T temp = arr[i];
+                    sortedList[i] = arr[i + 1];
+                    sortedList[i + 1] = temp;
+                }
+            }
+        }
+        return sortedList;
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 this.hide();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed

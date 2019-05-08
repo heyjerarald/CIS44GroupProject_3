@@ -35,6 +35,13 @@ public class AcceptStudentWindow extends javax.swing.JFrame {
     }
 
     void AddDataToTable(){
+        Student currentStudent;
+        Student[] studentArray = toArrayCasting(studentBag); 
+        
+        currentStudent = waitingList.dequeue();
+        studentBag.add(currentStudent);
+        
+        
 //         Student currentStudent;
 //         
 //         if(!waitingList.isEmpty()){
@@ -45,7 +52,7 @@ public class AcceptStudentWindow extends javax.swing.JFrame {
 //         System.out.println("Size in accepts student " + studentBag.getCurrentSize());
 //         
         System.out.println("Here in Accepts Students");
-        Student[] studentArray = toArrayCasting(studentBag);
+       // Student[] studentArray = toArrayCasting(studentBag);
  
          DefaultTableModel dt = (DefaultTableModel) jTable1.getModel();
          
@@ -200,6 +207,17 @@ this.hide();        // TODO add your handling code here:
     Student[] studentArray = toArrayCasting(studentBag); 
         System.out.println("ADDED: " + studentArray[0]);
     DefaultTableModel dt = (DefaultTableModel) jTable1.getModel();
+
+     if(!waitingList.isEmpty()){
+        JOptionPane.showMessageDialog(this, studentArray[0].getfName() + " " + studentArray[0].getlName() +  " is added\nfrom the wait-list", "Info Saved", HEIGHT);
+         currentStudent = waitingList.dequeue();
+         studentBag.add(currentStudent);
+         
+         }
+//     else{
+//             JOptionPane.showMessageDialog(this, "Waitlist is empty", "Alert", HEIGHT);
+//         }
+       
               dt.setRowCount(0);
          for(int i=0 ; i<studentArray.length; i++)
          {
@@ -208,18 +226,7 @@ this.hide();        // TODO add your handling code here:
              v.add(studentArray[i].getlName());
              v.add(studentArray[i].getGPA());
              dt.addRow(v);
-         }
-         if(!waitingList.isEmpty()){
-         JOptionPane.showMessageDialog(this, studentArray[0].getfName() + " " + studentArray[0].getlName() +  " is added\nto the class", "Info Saved", HEIGHT);
-         currentStudent = waitingList.dequeue();
-         studentBag.add(currentStudent);
-         }else{
-             JOptionPane.showMessageDialog(this, "Waiting list is empty", "Alert", HEIGHT);
-         }
-        
-       
- 
-         
+         }     
         
 //         Vector v1 = new Vector();
 //         Vector v2 = new Vector();

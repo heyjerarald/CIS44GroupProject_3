@@ -5,6 +5,8 @@
  */
 package cis44groupproject;
 
+import static cis44groupproject.WorstStudentWindow.descendingSort;
+import static cis44groupproject.WorstStudentWindow.toArrayCasting;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,40 +15,108 @@ import javax.swing.table.DefaultTableModel;
  * @author admin
  */
 public class BestStudentWindow extends javax.swing.JFrame {
-
+LinkedBag<Student> studentBag = new LinkedBag<>();
+    Queue<Student> waitingList = new Queue<>();
+    Stack<Student> studentStack = new Stack<>();
     /**
      * Creates new form BestStudentWindow
      */
-    public BestStudentWindow() {
+    public BestStudentWindow(LinkedBag<Student> studentBag, Queue<Student> waitingList,  Stack<Student> studentStack) {
+        this.studentBag = studentBag;
+        this.waitingList = waitingList;
+        this.studentStack = studentStack;
         initComponents();
         AddDataToTable();
     }
+
+    private BestStudentWindow() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 void AddDataToTable(){
+     Student[] studentArray = toArrayCasting(studentBag);
+       Student[] sortedArray = descendingSort(studentArray);
          DefaultTableModel dt = (DefaultTableModel) jTable1.getModel();
          
+//      for(Student s : accendingSort(toArrayCasting(studentBag))) {
+//                        studentStack.push(s);
+//                    }
+         //System.out.println("LOWEST: " + studentStack.pop());
+         
         
-         Vector v1 = new Vector();
-         Vector v2 = new Vector();
-         Vector v3 = new Vector();
-
+            // Vector v = new Vector();
+            // v.add(studentStack.pop());
+           
+            // dt.addRow(v);
+          
+             Vector v = new Vector();
+             v.add(studentArray[0].getfName());
+             v.add(studentArray[0].getlName());
+             v.add(studentArray[0].getGPA());
+             dt.addRow(v);
          
-         v1.add("e");
-         v1.add("f");
-         v1.add("6.00");
-         
-         v2.add("c");
-         v2.add("d");
-         v2.add("3.00");
-         
-         v3.add("a");
-         v3.add("b");
-         v3.add("4.00");
-    
-         dt.addRow(v1);
-    
+//         DefaultTableModel dt = (DefaultTableModel) jTable1.getModel();
+//         
+//        
+//         Vector v1 = new Vector();
+//         Vector v2 = new Vector();
+//         Vector v3 = new Vector();
+//
+//         
+//         v1.add("e");
+//         v1.add("f");
+//         v1.add("6.00");
+//         
+//         v2.add("c");
+//         v2.add("d");
+//         v2.add("3.00");
+//         
+//         v3.add("a");
+//         v3.add("b");
+//         v3.add("4.00");
+//    
+//         dt.addRow(v1);
+//    
         
   
      }
+public static <T> Student[] toArrayCasting(LinkedBag<T> inputBag)
+    {
+        Object[] rawStudentData = inputBag.toArray();
+        Student currentStudent;
+        Student[] toArrayStudent = new Student[rawStudentData.length];
+        for (int i = 0; i < rawStudentData.length; i++) {
+            currentStudent = (Student) rawStudentData[i];
+            toArrayStudent[i] = currentStudent;
+        }
+        return toArrayStudent;
+    }
+public static <T extends Comparable<T>> T[] accendingSort(T[] arr) {
+        T[] sortedList = arr;
+        for (T item : sortedList) {
+            for (int i = 0; i < sortedList.length - 1; i++) {
+                if (sortedList[i].compareTo(sortedList[i + 1]) > 0) {
+                    T temp = arr[i];
+                    sortedList[i] = arr[i + 1];
+                    sortedList[i + 1] = temp;
+                }
+            }
+        }
+        return sortedList;
+    }
+  
+      public static <T extends Comparable<T>> T[] descendingSort(T[] arr) {
+        T[] sortedList = arr;
+        for (T item : sortedList) {
+            for (int i = 0; i < sortedList.length - 1; i++) {
+                if (sortedList[i].compareTo(sortedList[i + 1]) < 0) {
+                    T temp = arr[i];
+                    sortedList[i] = arr[i + 1];
+                    sortedList[i + 1] = temp;
+                }
+            }
+        }
+        return sortedList;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

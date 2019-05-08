@@ -93,6 +93,7 @@ public class RankingWindow extends javax.swing.JFrame {
         }
         return toArrayStudent;
     }
+ 
   public static <T extends Comparable<T>> T[] accendingSort(T[] arr) {
         T[] sortedList = arr;
         for (T item : sortedList) {

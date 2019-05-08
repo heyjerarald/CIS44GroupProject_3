@@ -192,14 +192,14 @@ this.hide();        // TODO add your handling code here:
          if(!studentStack.isEmpty()){
         System.out.println("Removed: " + studentStack.pop());
       }
-//         
+         
 //        try{
 //        int selectedRowIndex = jTable1.getSelectedRow();
 //        dt.removeRow(selectedRowIndex);
 // 
 //        }
 //        catch(Exception ex){
-//            JOptionPane.showMessageDialog(this, "Please select something", "Disclaimer", HEIGHT);
+//            JOptionPane.showMessageDialog(this, "No selection detected", "Disclaimer", HEIGHT);
 //        }
 //        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
