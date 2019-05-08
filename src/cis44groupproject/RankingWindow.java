@@ -33,7 +33,7 @@ public class RankingWindow extends javax.swing.JFrame {
  void AddDataToTable(){
      
         Student[] studentArray = toArrayCasting(studentBag);
-        Student[] sortedArray = accendingSort(studentArray);
+        //Student[] sortedArray = accendingSort(studentArray);
          DefaultTableModel dt = (DefaultTableModel) jTable1.getModel();
 //         
 //        
@@ -46,7 +46,7 @@ public class RankingWindow extends javax.swing.JFrame {
 //         
 //         
 //
-         for(int i=0 ; i<sortedArray.length; i++)
+         for(int i=0 ; i<studentArray.length; i++)
          {
              Vector v = new Vector();
              v.add(studentArray[i].getfName());
@@ -192,9 +192,9 @@ public class RankingWindow extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(sortButton)
@@ -203,6 +203,7 @@ public class RankingWindow extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

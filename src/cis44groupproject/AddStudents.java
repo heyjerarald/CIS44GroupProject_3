@@ -137,6 +137,7 @@ public class AddStudents extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void lastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameActionPerformed
@@ -158,7 +159,7 @@ public class AddStudents extends javax.swing.JFrame {
         firstName.setText("");
         lastName.setText("");
         gpa.setText("");
-JOptionPane.showMessageDialog(this, fName + " " + lName + " added\nto gradebook", "Info Saved", HEIGHT);
+JOptionPane.showMessageDialog(this, fName + " " + lName + " is added\nto gradebook", "Info Saved", HEIGHT);
                 
         
 //        new SeeStudents1(fName, lName, GPA).setVisible(true);

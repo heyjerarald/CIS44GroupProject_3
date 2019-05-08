@@ -38,9 +38,10 @@ public class AcceptStudentWindow extends javax.swing.JFrame {
         Student currentStudent;
         Student[] studentArray = toArrayCasting(studentBag); 
         
+        if(!waitingList.isEmpty()){
         currentStudent = waitingList.dequeue();
         studentBag.add(currentStudent);
-        
+        }
         
 //         Student currentStudent;
 //         
@@ -169,22 +170,23 @@ public class AcceptStudentWindow extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(182, 182, 182)
-                .addComponent(jButton2)
-                .addGap(85, 85, 85)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(182, 182, 182)
+                        .addComponent(jButton2)
+                        .addGap(85, 85, 85)
+                        .addComponent(jButton1)))
                 .addContainerGap(19, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -192,6 +194,7 @@ public class AcceptStudentWindow extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -205,14 +208,14 @@ this.hide();        // TODO add your handling code here:
         Student currentStudent;
         
     Student[] studentArray = toArrayCasting(studentBag); 
-        System.out.println("ADDED: " + studentArray[0]);
+    System.out.println("ADDED: " + studentArray[0]);
     DefaultTableModel dt = (DefaultTableModel) jTable1.getModel();
 
      if(!waitingList.isEmpty()){
-        JOptionPane.showMessageDialog(this, studentArray[0].getfName() + " " + studentArray[0].getlName() +  " is added\nfrom the wait-list", "Info Saved", HEIGHT);
+        JOptionPane.showMessageDialog(this, studentArray[0].getfName() + " " + studentArray[0].getlName() +  " was added\nfrom the wait-list\nto the grade book", "Info Saved", HEIGHT);
          currentStudent = waitingList.dequeue();
          studentBag.add(currentStudent);
-         
+       
          }
 //     else{
 //             JOptionPane.showMessageDialog(this, "Waitlist is empty", "Alert", HEIGHT);

@@ -44,6 +44,7 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jCheckBox1 = new javax.swing.JCheckBox();
         seeStudents = new javax.swing.JButton();
         addStudents = new javax.swing.JButton();
         rankingButton = new javax.swing.JButton();
@@ -52,6 +53,8 @@ public class Menu extends javax.swing.JFrame {
         WorstStudentButton = new javax.swing.JButton();
         RemoveStudentButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
+
+        jCheckBox1.setText("jCheckBox1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("WELCOME TO THE GRADEBOOK");
@@ -155,6 +158,7 @@ public class Menu extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void seeStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seeStudentsActionPerformed
@@ -274,6 +278,7 @@ newWindow.setVisible(true);
     private javax.swing.JButton addStudents;
     private javax.swing.JButton bestStudentButton;
     private javax.swing.JButton exitButton;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JButton rankingButton;
     private javax.swing.JButton seeStudents;
     // End of variables declaration//GEN-END:variables
