@@ -5,7 +5,7 @@
  */
 package cis44groupproject;
 
-import static cis44groupproject.SeeStudents2.toArrayCasting;
+import static cis44groupproject.Main.toArrayCasting;
 import static java.awt.image.ImageObserver.HEIGHT;
 import java.util.Vector;
 import javax.swing.JOptionPane;
