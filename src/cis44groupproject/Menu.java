@@ -5,8 +5,11 @@
  */
 package cis44groupproject;
 
-
-
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.text.DecimalFormat;
+import java.util.Random;
+import java.awt.event.MouseEvent;
 /**
  *
  * @author admin
@@ -19,21 +22,25 @@ public class Menu extends javax.swing.JFrame {
     LinkedBag<Student> studentBag = new LinkedBag<>();
     Queue<Student> waitingList = new Queue<>();
     Stack<Student> studentStack = new Stack<>();
-    public Menu(LinkedBag<Student> studentBag, Queue<Student> waitingList,  Stack<Student> studentStack) {
-        
+
+    public Menu(LinkedBag<Student> studentBag, Queue<Student> waitingList, Stack<Student> studentStack) {
+
         this.studentBag = studentBag;
         this.waitingList = waitingList;
         this.studentStack = studentStack;
         initComponents();
-        
+
         System.out.println("IN the menu constructor " + studentBag.getCurrentSize());
+        
     }
 
     private Menu(LinkedBag<Student> studentBag) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
+
+    Menu() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,6 +52,9 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         jCheckBox1 = new javax.swing.JCheckBox();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         seeStudents = new javax.swing.JButton();
         addStudents = new javax.swing.JButton();
         rankingButton = new javax.swing.JButton();
@@ -58,8 +68,57 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("WELCOME TO THE GRADEBOOK");
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(678, 428));
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
+        jPanel1.setBackground(new java.awt.Color(51, 62, 70));
+
+        jPanel2.setBackground(new java.awt.Color(104, 216, 192));
+        jPanel2.setPreferredSize(new java.awt.Dimension(678, 44));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 678, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 44, Short.MAX_VALUE)
+        );
+
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Welcome to the Gradebook");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(190, 190, 190)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(21, 21, 21))
+        );
+
+        seeStudents.setBackground(new java.awt.Color(255, 255, 255));
+        seeStudents.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         seeStudents.setText("1. See students");
+        seeStudents.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         seeStudents.setName("kk"); // NOI18N
         seeStudents.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,49 +126,70 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        addStudents.setBackground(new java.awt.Color(255, 255, 255));
+        addStudents.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         addStudents.setText("2. Add students");
+        addStudents.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         addStudents.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addStudentsActionPerformed(evt);
             }
         });
 
+        rankingButton.setBackground(new java.awt.Color(255, 255, 255));
+        rankingButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         rankingButton.setText("3. Ranking");
+        rankingButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         rankingButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rankingButtonActionPerformed(evt);
             }
         });
 
+        acceptStudentButton.setBackground(new java.awt.Color(255, 255, 255));
+        acceptStudentButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         acceptStudentButton.setText("4. Accept students");
+        acceptStudentButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         acceptStudentButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 acceptStudentButtonActionPerformed(evt);
             }
         });
 
+        bestStudentButton.setBackground(new java.awt.Color(255, 255, 255));
+        bestStudentButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         bestStudentButton.setText("5. Best student");
+        bestStudentButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bestStudentButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bestStudentButtonActionPerformed(evt);
             }
         });
 
+        WorstStudentButton.setBackground(new java.awt.Color(255, 255, 255));
+        WorstStudentButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         WorstStudentButton.setText("6. Worst student");
+        WorstStudentButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         WorstStudentButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 WorstStudentButtonActionPerformed(evt);
             }
         });
 
+        RemoveStudentButton.setBackground(new java.awt.Color(255, 255, 255));
+        RemoveStudentButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         RemoveStudentButton.setText("7. Remove students");
+        RemoveStudentButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         RemoveStudentButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RemoveStudentButtonActionPerformed(evt);
             }
         });
 
+        exitButton.setBackground(new java.awt.Color(255, 255, 255));
+        exitButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         exitButton.setText("10. Exit");
+        exitButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitButtonActionPerformed(evt);
@@ -120,29 +200,34 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(acceptStudentButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(seeStudents, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addStudents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(rankingButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(RemoveStudentButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(WorstStudentButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bestStudentButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(38, 38, 38))
+                    .addComponent(seeStudents, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addStudents, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rankingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(acceptStudentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(WorstStudentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bestStudentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RemoveStudentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(66, 66, 66))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {RemoveStudentButton, WorstStudentButton, acceptStudentButton, addStudents, bestStudentButton, exitButton, rankingButton, seeStudents});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(seeStudents)
                     .addComponent(bestStudentButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 24, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addStudents)
                     .addComponent(WorstStudentButton))
@@ -154,7 +239,7 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(acceptStudentButton)
                     .addComponent(exitButton))
-                .addGap(79, 79, 79))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
 
         pack();
@@ -162,18 +247,18 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void seeStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seeStudentsActionPerformed
-       
+
         // TODO add your handling code here:
-        SeeStudents2 seestudentWindow = new SeeStudents2(studentBag);
+        SeeStudents1 seestudentWindow = new SeeStudents1(studentBag);
         seestudentWindow.setVisible(true);
-        
+
     }//GEN-LAST:event_seeStudentsActionPerformed
 
     private void addStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentsActionPerformed
         // TODO add your handling code here:
         AddStudents addstudentWindow = new AddStudents(studentBag);
         addstudentWindow.setVisible(true);
-        
+
     }//GEN-LAST:event_addStudentsActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
@@ -188,33 +273,38 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_rankingButtonActionPerformed
 
     private void acceptStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptStudentButtonActionPerformed
-AcceptStudentWindow newWindow = new AcceptStudentWindow(studentBag, waitingList);
-newWindow.setVisible(true);
+        AcceptStudentWindow newWindow = new AcceptStudentWindow(studentBag, waitingList);
+        newWindow.setVisible(true);
 // TODO add your handling code here:
     }//GEN-LAST:event_acceptStudentButtonActionPerformed
 
     private void bestStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bestStudentButtonActionPerformed
-BestStudentWindow newWindow  = new BestStudentWindow(studentBag, waitingList, studentStack);
-newWindow.setVisible(true);
+        BestStudentWindow newWindow = new BestStudentWindow(studentBag, waitingList, studentStack);
+        newWindow.setVisible(true);
 // TODO add your handling code here:
     }//GEN-LAST:event_bestStudentButtonActionPerformed
 
     private void WorstStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WorstStudentButtonActionPerformed
-WorstStudentWindow newWindow = new WorstStudentWindow(studentBag, waitingList, studentStack);
-newWindow.setVisible(true);
+        WorstStudentWindow newWindow = new WorstStudentWindow(studentBag, waitingList, studentStack);
+        newWindow.setVisible(true);
 // TODO add your handling code here:
     }//GEN-LAST:event_WorstStudentButtonActionPerformed
 
     private void RemoveStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveStudentButtonActionPerformed
-RemoveStudent newWindow = new RemoveStudent(studentBag, waitingList, studentStack);
-newWindow.setVisible(true);
+        RemoveStudent newWindow = new RemoveStudent(studentBag, waitingList, studentStack);
+        newWindow.setVisible(true);
 // TODO add your handling code here:
     }//GEN-LAST:event_RemoveStudentButtonActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formKeyPressed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -242,34 +332,58 @@ newWindow.setVisible(true);
         LinkedBag<Student> studentBag = new LinkedBag<>();
         Queue<Student> waitingList = new Queue<>();
         Stack<Student> studentStack = new Stack<>();
-        
-        
 
-        Student st1 = new Student("a", "b", 4.0);
-        Student st2 = new Student("c", "d", 3.0);
-        Student st3 = new Student("e", "f", 6.0);
+//        String[] fNames = {"Aaron", "Blake", "Charice", "Dillion", "Eve", "Fiona", "Gill", "Hannah", "Ian", "James", "Kaitlyn", "Leon", "Michelle"};
+//
+//        String[] lNames = {"Nolan", "Otis", "Phillips", "Quinton", "Roberts", "Stockton", "Thompson", "Ubaldo", "Vallen", "Walters", "Xanders", "Young", "Zabinski"};
+//        
+//        Double minGPA = 0.0;
+//        Double maxGPA = 4.0; 
+//        
+//        int inClass = 21;
+//        int inwaitList = 8;
+//
+//        DecimalFormat df = new DecimalFormat("0.##");
+//       
+//        for (int i = 0; i < inClass; i++) {
+//            double gpa = (Math.random() * (maxGPA - minGPA)) + minGPA; 
+//     
+//            Student st1 = new Student(fNames[new Random().nextInt(fNames.length)], lNames[new Random().nextInt(fNames.length)], Double.parseDouble(df.format(gpa)));
+//            studentBag.add(st1);
+//        }
+//        for (int i = 0; i < inwaitList; i++) {
+//            double gpa = (Math.random() * (maxGPA - minGPA)) + minGPA; 
+//  
+//            Student st2 = new Student(fNames[new Random().nextInt(fNames.length)], lNames[new Random().nextInt(fNames.length)], Double.parseDouble(df.format(gpa)));
+//            waitingList.enqueue(st2);
+//        }
+//        System.out.println(studentBag.getCurrentSize());
+//        System.out.println(df.format(randomValue));
 
-        Student st4 = new Student("g", "h", 3.75);
-        Student st5 = new Student("i", "j", 3.9);
-        Student st6 = new Student("k", "l", 2.5);
+//        Student st1 = new Student("a", "b", 3.8);
+//        Student st2 = new Student("c", "d", 3.0);
+//        Student st3 = new Student("e", "f", 6.0);
+//
+//        Student st4 = new Student("g", "h", 3.75);
+//        Student st5 = new Student("i", "j", 3.9);
+//        Student st6 = new Student("k", "l", 2.5);
+//
+//        studentBag.add(st1);
+//        studentBag.add(st2);
+//        studentBag.add(st3);
+//
+//        waitingList.enqueue(st4);
+//        waitingList.enqueue(st5);
+//        waitingList.enqueue(st6);
 
-        studentBag.add(st1);
-        studentBag.add(st2);
-        studentBag.add(st3);
-
-        waitingList.enqueue(st4);
-        waitingList.enqueue(st5);
-        waitingList.enqueue(st6);
-        
-
-        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 System.out.println("Here in the Main" + studentBag.getCurrentSize());
                 new Menu(studentBag, waitingList, studentStack).setVisible(true);
+             
             }
         });
-    }
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton RemoveStudentButton;
@@ -279,6 +393,9 @@ newWindow.setVisible(true);
     private javax.swing.JButton bestStudentButton;
     private javax.swing.JButton exitButton;
     private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JButton rankingButton;
     private javax.swing.JButton seeStudents;
     // End of variables declaration//GEN-END:variables

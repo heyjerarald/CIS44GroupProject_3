@@ -26,7 +26,7 @@ public class RankingWindow extends javax.swing.JFrame {
         AddDataToTable();
     }
 
-    private RankingWindow() {
+    RankingWindow() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
@@ -136,10 +136,17 @@ public class RankingWindow extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         sortButton = new javax.swing.JButton();
         sortButton2 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("3. Ranking");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(678, 428));
 
+        jTable1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -148,58 +155,107 @@ public class RankingWindow extends javax.swing.JFrame {
                 "First", "Last", "GPA"
             }
         ));
+        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jScrollPane1.setViewportView(jTable1);
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton1.setText("Back");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
+        sortButton.setBackground(new java.awt.Color(255, 255, 255));
+        sortButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         sortButton.setText("Descending");
+        sortButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         sortButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sortButtonActionPerformed(evt);
             }
         });
 
+        sortButton2.setBackground(new java.awt.Color(255, 255, 255));
+        sortButton2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         sortButton2.setText("Ascending");
+        sortButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         sortButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sortButton2ActionPerformed(evt);
             }
         });
 
+        jPanel1.setBackground(new java.awt.Color(51, 62, 70));
+        jPanel1.setPreferredSize(new java.awt.Dimension(678, 122));
+        jPanel1.setRequestFocusEnabled(false);
+
+        jPanel2.setBackground(new java.awt.Color(104, 216, 192));
+        jPanel2.setPreferredSize(new java.awt.Dimension(678, 44));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 44, Short.MAX_VALUE)
+        );
+
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("3. Ranking");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(279, 279, 279)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addContainerGap(32, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addComponent(sortButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(sortButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
-                .addContainerGap(19, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(183, Short.MAX_VALUE)
+                .addComponent(sortButton)
+                .addGap(18, 18, 18)
+                .addComponent(sortButton2)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(160, 160, 160))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(sortButton)
                     .addComponent(sortButton2))
-                .addGap(14, 14, 14))
+                .addGap(24, 24, 24))
         );
 
         pack();
@@ -285,6 +341,9 @@ public class RankingWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton sortButton;
