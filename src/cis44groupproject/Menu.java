@@ -263,7 +263,8 @@ public class Menu extends javax.swing.JFrame {
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+        Finish window = new Finish();
+        window.setVisible(true);
     }//GEN-LAST:event_exitButtonActionPerformed
 
     private void rankingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rankingButtonActionPerformed

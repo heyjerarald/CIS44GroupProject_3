@@ -33,6 +33,7 @@ public class Start {
         int inClass = 21;
         int inwaitList = 8;
 
+        
         DecimalFormat df = new DecimalFormat("0.##");
        
         for (int i = 0; i < inClass; i++) {
@@ -47,8 +48,8 @@ public class Start {
             Student st2 = new Student(fNames[new Random().nextInt(fNames.length)], lNames[new Random().nextInt(fNames.length)], Double.parseDouble(df.format(gpa)));
             waitingList.enqueue(st2);
         }
-        System.out.println("IN the loading constructor " + studentBag.getCurrentSize());
-        System.out.println(studentBag.getCurrentSize());
+        System.out.println("IN the start constructor " + studentBag.getCurrentSize());
+       // System.out.println(studentBag.getCurrentSize());
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
